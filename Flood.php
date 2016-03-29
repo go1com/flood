@@ -58,7 +58,7 @@ class Flood
         $identifier = $identifier ?: $this->ip();
 
         $sql = "SELECT COUNT(*) FROM {$this->tableName}";
-        $sql .= " WHERE event = :event AND identifier = :identifier AND timestamp > :timestamp";
+        $sql .= " WHERE event = ? AND identifier = ? AND timestamp > ?";
 
         return $threshold > $this->connection
             ->executeQuery($sql, [$name, $identifier, time() - $window])

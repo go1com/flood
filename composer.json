@@ -4,5 +4,10 @@
   "require": {
     "doctrine/dbal": "^v2.5.4",
     "vectorface/whip": "^v0.3.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "go1\\flood": "./"
+    }
   }
 }

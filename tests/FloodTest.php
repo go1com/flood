@@ -4,6 +4,7 @@ namespace go1\flood;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
+use Vectorface\Whip\Whip;
 
 class FloodTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +17,7 @@ class FloodTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->connection = DriverManager::getConnection(['url' => 'sqlite://sqlite::memory:']);
-        $this->flood = new Flood($this->connection);
+        $this->flood = new Flood($this->connection, 'flood', new Whip(Whip::PROXY_HEADERS));
         $this->flood->install();
     }
 

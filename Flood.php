@@ -11,11 +11,11 @@ class Flood
     private $tableName = 'flood';
     private $whip;
 
-    public function __construct(Connection $connection, $tableName = 'flood', Whip $whip = null)
+    public function __construct(Connection $connection, $tableName = 'flood', Whip $whip)
     {
         $this->connection = $connection;
         $this->tableName = $tableName;
-        $this->whip = $whip ?: new Whip();
+        $this->whip = $whip;
     }
 
     private function ip()

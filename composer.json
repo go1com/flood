@@ -2,8 +2,8 @@
   "name": "go1/flood",
   "license": "MIT",
   "require": {
-    "doctrine/dbal": "^v2.5.4",
-    "vectorface/whip": "^v0.3.1"
+    "doctrine/dbal": "^2.5.4",
+    "vectorface/whip": "^0.3.1"
   },
   "autoload": {
     "psr-4": {

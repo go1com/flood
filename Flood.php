@@ -11,7 +11,7 @@ class Flood
     private $tableName = 'flood';
     private $whip;
 
-    public function __construct(Connection $connection, $tableName = 'flood', Whip $whip)
+    public function __construct(Connection $connection, $tableName, Whip $whip)
     {
         $this->connection = $connection;
         $this->tableName = $tableName;

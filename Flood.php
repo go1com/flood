@@ -3,6 +3,7 @@
 namespace go1\flood;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Schema\Schema;
 use Vectorface\Whip\Whip;
 
 class Flood
@@ -23,10 +24,23 @@ class Flood
         return $this->whip->getIpAddress();
     }
 
-    public function install()
+    public function install($execute = true)
     {
-        $schema = $this->connection->getSchemaManager()->createSchema();
-        $table = $schema->createTable($this->tableName);
+        static::migrate(
+            $schema = $this->connection->getSchemaManager()->createSchema(),
+            $this->tableName
+        );
+
+        if ($execute) {
+            foreach ($schema->toSql($this->connection->getDatabasePlatform()) as $sql) {
+                $this->connection->executeQuery($sql);
+            }
+        }
+    }
+
+    public static function migrate(Schema $schema, $tableName)
+    {
+        $table = $schema->createTable($tableName);
         $table->addColumn('fid', 'integer', ['unsigned' => true, 'autoincrement' => true]);
         $table->addColumn('event', 'string', ['length' => 64]);
         $table->addColumn('identifier', 'string', ['length' => 128]);
@@ -35,9 +49,6 @@ class Flood
         $table->setPrimaryKey(['fid']);
         $table->addIndex(['event', 'identifier', 'timestamp'], 'index_allow');
         $table->addIndex(['expiration'], 'index_purge');
-        foreach ($schema->toSql($this->connection->getDatabasePlatform()) as $sql) {
-            $this->connection->executeQuery($sql);
-        }
     }
 
     /**

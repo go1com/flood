@@ -69,14 +69,6 @@ class Flood
         return $threshold > $this->count($name, $window, $identifier);
     }
 
-    /**
-     * Checks user specified event occuring times
-     *
-     * @param string $name       The unique name of the event.
-     * @param int    $window     Number of seconds in the time window for this event (default is 3600 seconds/1 hour).
-     * @param        $identifier Unique identifier of the current user. Defaults to their IP address.
-     * @return int
-     */
     public function count($name, $window = 3600, $identifier = null)
     {
         $identifier = $identifier ?: $this->ip();

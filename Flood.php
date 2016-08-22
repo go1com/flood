@@ -66,12 +66,17 @@ class Flood
      */
     public function isAllowed($name, $threshold, $window = 3600, $identifier = null)
     {
+        return $threshold > $this->count($name, $window, $identifier);
+    }
+
+    public function count($name, $window = 3600, $identifier = null)
+    {
         $identifier = $identifier ?: $this->ip();
 
         $sql = "SELECT COUNT(*) FROM {$this->tableName}";
         $sql .= " WHERE event = ? AND identifier = ? AND timestamp > ?";
 
-        return $threshold > $this->connection
+        return $this->connection
             ->executeQuery($sql, [$name, $identifier, time() - $window])
             ->fetchColumn();
     }

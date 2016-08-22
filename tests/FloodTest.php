@@ -46,6 +46,15 @@ class FloodTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->flood->isAllowed(__METHOD__, 4));
     }
 
+    public function testCount()
+    {
+        $this->flood->register(__METHOD__);
+        $this->flood->register(__METHOD__);
+        $this->flood->register(__METHOD__);
+
+        $this->assertEquals(3, $this->flood->count(__METHOD__));
+    }
+
     public function testClearEvent()
     {
         $sql = 'SELECT COUNT(*) FROM flood WHERE event = ?';

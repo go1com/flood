@@ -1,10 +1,12 @@
 {
   "name": "go1/flood",
-  "license": "MIT",
   "require": {
     "doctrine/dbal": "^2.5.4",
     "vectorface/whip": "^0.3.1"
   },
+  "license" : [
+    "MIT"
+  ],
   "autoload": {
     "psr-4": {
       "go1\\flood\\": "./"

@@ -1,6 +1,8 @@
 {
   "name": "go1/flood",
-  "license": "MIT",
+  "license" : [
+    "MIT"
+  ],
   "require": {
     "doctrine/dbal": "^2.5.4",
     "vectorface/whip": "^0.3.1"

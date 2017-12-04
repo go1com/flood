@@ -5,8 +5,9 @@ namespace go1\flood;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 use Vectorface\Whip\Whip;
+use PHPUnit\Framework\TestCase;
 
-class FloodTest extends \PHPUnit_Framework_TestCase
+class FloodTest extends TestCase
 {
     /** @var  Connection */
     private $connection;

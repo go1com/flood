@@ -1,0 +1,4 @@
+config.php
+vendor/
+db.sqlite
+.idea/
